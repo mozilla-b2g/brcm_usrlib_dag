@@ -38,6 +38,8 @@ extern "C" {
 
 #ifdef USE_BMEM
 #include "bcm_gememalloc_ioctl.h"
+#include <errno.h>
+#include <string.h>
 #include <sys/ioctl.h>
 #include <fcntl.h>
 #include <sys/mman.h>
@@ -74,7 +76,8 @@ GhwAllocatorDevice::GhwAllocatorDevice() :mFd(-1) {
 #ifdef USE_BMEM
 	mFd = open(DEVICE_NAME, O_RDWR | O_SYNC);
 	if(mFd <= 0 ) {
-		LOGE("GhwAllocatorDevice device open failed for %s\n",DEVICE_NAME);
+		int err = errno;
+		LOGE("GhwAllocatorDevice device open failed for %s: %s(%d)\n",DEVICE_NAME, strerror(err), err);
 		}
 #endif
 	count++;
