@@ -3029,7 +3029,7 @@ int ppwrap(void)
             s_CurrentBufferState = pp_scan_string((const char *)((size_t)body & ~0x20000000));
 #else
          if ((size_t)body & 0x40000000) {
-            s_CurrentBufferState = pp_scan_string((const char *)((size_t)body & ~0x00000000));
+            s_CurrentBufferState = pp_scan_string((const char *)((size_t)body & ~0x40000000));
 #endif //ANDROID
 #else
          if ((size_t)body & 0x80000000) {
