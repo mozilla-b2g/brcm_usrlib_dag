@@ -85,12 +85,14 @@ FN(void, glDiscardFramebufferEXT_impl, (GLenum target, GLsizei numAttachments, c
 /*                                 OES extension functions                               */
 /*****************************************************************************************/
 
+#ifndef GLXX_NO_VERTEX_CACHE
 FN(int, glintFindMax_impl, (GLsizei count, GLenum type, const void *indices_pointer))
 FN(void, glintCacheCreate_impl, (GLsizei offset))
 FN(void, glintCacheDelete_impl, (GLsizei offset))
 FN(void, glintCacheData_impl, (GLsizei offset, GLsizei length, const GLvoid *data))
 FN(GLboolean, glintCacheGrow_impl, (void))
 FN(void, glintCacheUse_impl, (GLsizei count, GLsizei *offset))
+#endif /* GLXX_NO_VERTEX_CACHE */
 
 #if GL_OES_EGL_image
 FN(void, glEGLImageTargetTexture2DOES_impl, (GLenum target, GLeglImageOES image))

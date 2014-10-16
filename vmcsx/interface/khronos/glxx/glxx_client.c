@@ -1239,7 +1239,7 @@ static void draw_arrays_or_elements(GLXX_CLIENT_STATE_T *state, GLenum mode, GLs
 
 #ifdef RPC_DIRECT
 
-#ifndef GLXX_NO_VERTEX_CACHE
+# ifndef GLXX_NO_VERTEX_CACHE
 {
 
    if(type==0) {
@@ -1294,15 +1294,15 @@ static void draw_arrays_or_elements(GLXX_CLIENT_STATE_T *state, GLenum mode, GLs
          state->attrib[i].pointer = saved_blah[i];
    }
 }
-#else
+# else  /* ifndef GLXX_NO_VERTEX_CACHE */
    if(type!=0) {
       indices_pointer = indices;
    }
    RPC_CALL8(glDrawElements_impl, no_id, mode, count, type,
                                 (void *)indices_pointer, indices_buffer,
                                 state->attrib,NULL,0);
-#endif
-#if defined(RPC_DELAYED_USE_OF_POINTERS) && defined(GLXX_NO_VERTEX_CACHE)
+# endif  /* ifndef GLXX_NO_VERTEX_CACHE */
+# if defined(RPC_DELAYED_USE_OF_POINTERS) && defined(GLXX_NO_VERTEX_CACHE)
    /*
       If we're using the dual core driver, the "server" won't be finished with
       our pointers until the FIFO is flushed. We need to wait for this to
@@ -1310,8 +1310,8 @@ static void draw_arrays_or_elements(GLXX_CLIENT_STATE_T *state, GLenum mode, GLs
    */
    if (send_any  || send_indices)
       RPC_CALL0(khrn_misc_fifo_finish_impl, no_id);
-#endif
-#else
+# endif  /* defined(RPC_DELAYED_USE_OF_POINTERS) && defined(GLXX_NO_VERTEX_CACHE) */
+#else    /* ifdef RPC_DIRECT */
 
    {
       if(type==0) {
@@ -1344,7 +1344,7 @@ static void draw_arrays_or_elements(GLXX_CLIENT_STATE_T *state, GLenum mode, GLs
       }
       rpc_end();
    }
-#endif
+#endif  /* ifdef RPC_DIRECT */
 
 }
 
@@ -5449,6 +5449,7 @@ int gl11_client_state_init(GLXX_CLIENT_STATE_T *state)
 
 
 #ifdef GLXX_NO_VERTEX_CACHE
+   memset(&state->cache, 0, sizeof(state->cache));
    return 1;
 #else
    return khrn_cache_init(&state->cache);
@@ -5466,6 +5467,7 @@ int gl20_client_state_init(GLXX_CLIENT_STATE_T *state)
    state->default_framebuffer = true;
 
 #ifdef GLXX_NO_VERTEX_CACHE
+   memset(&state->cache, 0, sizeof(state->cache));
    return 1;
 #else
    return khrn_cache_init(&state->cache);

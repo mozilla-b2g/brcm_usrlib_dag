@@ -2405,11 +2405,11 @@ static void fill_vert(FILL_T *fill, int32_t x, int32_t y)
    fill->in_subpath = true;
    p = h->v; /* allocated room for verts after header */
 
-   ADD_WORD((uint8_t*)p, FILL_CENTER_XY_UNWRITTEN); /* we'll write all the centers later */
+   ADD_WORD(p, FILL_CENTER_XY_UNWRITTEN); /* we'll write all the centers later */
    if (have_prev) {
-      ADD_WORD((uint8_t*)p, prev_xy);
+      ADD_WORD(p, prev_xy);
    }
-   ADD_WORD((uint8_t*)p, xy);
+   ADD_WORD(p, xy);
    vcos_assert(p == fill->i->tess->u.in_use.v_allocator.p);
 }
 

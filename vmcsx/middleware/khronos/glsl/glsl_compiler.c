@@ -863,6 +863,9 @@ bool glsl_compile_and_link(slang_program* program)
    // note must do this after packing varyings as only the construction of
    // the mov node tells us that a uniform used to initialise a varying is live
    {
+#ifndef NDEBUG
+      int i;
+#endif
       pack_uniform_t context;
       program->num_uniforms = 0;
       program->num_samplers = 0;

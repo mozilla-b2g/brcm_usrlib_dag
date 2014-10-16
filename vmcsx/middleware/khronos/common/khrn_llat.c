@@ -1,4 +1,4 @@
-#ifndef __HERA_V3D__
+#if !defined(__HERA_V3D__) && !defined(ANDROID)
 #define KHRN_LLAT_OTHER_CORE
 #endif
 

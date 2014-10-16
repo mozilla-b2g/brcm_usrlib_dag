@@ -50,7 +50,7 @@ unsigned int memory_pool_size;
 #endif
 #endif // ANDROID
 
-#if defined(__HERA_V3D__)
+#if defined(__HERA_V3D__) || defined(ANDROID)
 
 #include "vc_asm_ops.h"
 #define _min(x,y) ((x)<(y) ? (x):(y))

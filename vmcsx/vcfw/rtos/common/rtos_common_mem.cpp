@@ -870,3 +870,21 @@ void mem_unlock_multiple(MEM_HANDLE_OFFSET_T *handles, uint32_t n)
 			}
 		}
 }
+
+/*
+   Preconditions:
+
+   - handle is a valid MEM_HANDLE_T.
+   - desc is NULL or a pointer to a null-terminated string.
+
+   Postconditions:
+
+   - The MEM_HANDLE_T's description is set to desc.
+*/
+
+#ifndef NDEBUG
+void mem_set_desc(MEM_HANDLE_T handle, const char *desc)
+{
+    // TODO: update this function if |desc| handling restored
+}
+#endif

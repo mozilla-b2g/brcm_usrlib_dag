@@ -440,7 +440,7 @@ void glsl_token_dump(Token *token)
    case IDENTIFIER:
    case PPNUMBERU:
    case UNKNOWN:
-      printf(token->data.s);
+      printf("%s", token->data.s);
       break;
    case PPNUMBERI:
       printf("%d", token->data.i);
@@ -452,7 +452,7 @@ void glsl_token_dump(Token *token)
       vcos_assert(token->type >= HASH && token->type <= _FALSE);
       vcos_assert(!strcmp(token_names[_FALSE - HASH], "false"));
 
-      printf(token_names[token->type - HASH]);
+      printf("%s", token_names[token->type - HASH]);
       break;
    }
 }

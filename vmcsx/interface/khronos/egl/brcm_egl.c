@@ -1021,7 +1021,7 @@ static bool brcm_egl_convert_anative_buf_to_khrn_image( android_native_buffer_t 
    {
 
       KHRN_IMAGE_FORMAT_T format = convert_android_format( abuffer->format ,isTiled) ; //get the format from the gralloc image
-#ifdef BRCM_V3D_OPT
+#if defined(XXX_QUESTIONABLE_TODO_REVIEW) || defined(BRCM_V3D_OPT)
       uint32_t width = abuffer->stride; //get the width from the gralloc image
 #else
       uint32_t width = abuffer->width; //get the width from the gralloc image

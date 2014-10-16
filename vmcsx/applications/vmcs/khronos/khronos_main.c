@@ -194,7 +194,9 @@ void khronos_init()
 
 	if (v3d_init)
 	{
+#if defined(XXX_QUESTIONABLE_TODO_REVIEW)
 		assert(v3d_get_func_table()->init() == 0);
+#endif
 		v3d_init = 0;
 
 #ifdef RPC_DIRECT

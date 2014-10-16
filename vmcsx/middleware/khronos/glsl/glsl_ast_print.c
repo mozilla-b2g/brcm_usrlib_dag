@@ -180,7 +180,7 @@ static void print_expr_instance(FILE* f, Expr* expr, bool fully_evaluated)
 {
    UNUSED(fully_evaluated);
 
-	fprintf(f, expr->u.instance.symbol->name);
+	fprintf(f, "%s", expr->u.instance.symbol->name);
 }
 
 static void print_expr_subscript(FILE* f, Expr* expr, bool fully_evaluated)

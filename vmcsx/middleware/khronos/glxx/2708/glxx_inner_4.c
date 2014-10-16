@@ -709,7 +709,7 @@ static bool create_master_cl(void)
       /* rendering upside down causes the HW to decrement its pointers rather than increment.  Cause this to point to the end of 
 
 the buffer */
-      offset = col->offset + ((col->height - 1) * col->stride));
+      offset = col->offset + ((col->height - 1) * col->stride);
    else
       offset = col->offset;
 #else
@@ -1280,7 +1280,7 @@ static bool populate_master_cl(GLXX_HW_FRAMEBUFFER_T *fb)
                /* rendering upside down causes the HW to decrement its pointers rather than increment.  Cause this to point to 
 
 the end of the buffer */
-               offset = color_image->offset + ((color_image->height - 1) * color_image->stride));
+               offset = color_image->offset + ((color_image->height - 1) * color_image->stride);
             else
                offset = color_image->offset;
 #else

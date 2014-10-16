@@ -214,7 +214,7 @@ void platform_get_dimensions(EGLNativeWindowType win, uint32_t *width, uint32_t 
 #endif // ANDROID
 #endif //EGL_SERVER_SMALLINT
 
-#ifndef __HERA_V3D__
+#if !defined(__HERA_V3D__) && !defined(ANDROID)
 bool platform_get_pixmap_info(EGLNativePixmapType pixmap, KHRN_IMAGE_WRAP_T *image)
 {
    VC_IMAGE_T *vcimage = (VC_IMAGE_T *)pixmap, locked;
